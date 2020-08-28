@@ -1,7 +1,74 @@
+# Log of digging into the code of mark2cure
+
+
+After failing to install mark2cure (see log in the end), I
+decided to explore the repository to at least grasp the
+relevant bits of code. 
+
+
+## settings.py
+
+The user interface seems to be coded using the [Django framework] (https://www.djangoproject.com/).
+Django is marketed to be a framework "for perfectionists with deadlines". 
+
+
+
+it has some words for flatter: 
+POSTIVE_FLATTER = ['Bravo', 'Wow', 'Super', 'Terrific', 'Cool', 'Amazing', 'Superb', 'Brilliant', 'Fantastic', 'Fabulous', 'You\'re a Champion', 'Well done', 'You rock', 'Great job', 'Tip top', 'Good thinking', 'Keep it up', 'Way to go', 'Right on', 'Top stuff', 'Take a bow', 'Unreal', 'Impressed', 'Great stuff', 'Awesome', 'Nice going', 'Very Creative', 'Thank You', 'Beautiful', 'Very proud', 'Good for you', 'Give me five', 'You make me happy', 'A+', 'A++', 'AA+', 'Fab', 'Rad', 'A+++', 'AAA+', 'A-OK', 'Best', 'Cool', 'Deal', 'Fast', 'Fine', 'Item', 'Nice', 'Safe', 'Thx!', 'WOW!', 'Prime', 'Solid', 'Super', 'Sweet', 'Thanx', 'Whoa!', 'Groovy', 'Honest', 'Speedy', 'Superb', 'Sweeet', 'Thanks', 'Zowie!', 'Amazing', 'Awesome', 'Quality', 'Service', 'Sweeeet', 'Glorious', 'Stunning', 'Superior', 'The Best', 'The Bomb', 'Thrilled', 'Way Cool', 'Brilliant', 'Competent', 'Delighted', 'Excellent', 'Exquisite', 'Marvelous', 'Overjoyed', 'Satisfied', 'Thank You', 'Top Notch', 'Unrivaled', 'Wonderful', 'A Home Run', 'Astounding', 'Delightful', 'Impressive', 'Incredible', 'Super Cool', 'Super Fast', 'Supersonic', 'Astonishing', 'Fascinating', 'Interesting', 'Magnificent', 'No Problems', 'Outstanding', 'Splendorous', 'Trustworthy', 'Unsurpassed', 'Wicked Cool', 'Breathtaking', 'Looking Good', 'Overwhelming!', 'Unbelievable!', 'Awe Inspiring', 'Lickety Split', 'Splendiferous', 'Thanks A Ton!', 'Extremely Cool', 'Satisfied 100%', 'Extremely Happy', 'Great Condition', 'Above And Beyond', 'State Of The Art', 'Thanks A Million!', 'Unbelievably Cool', 'Expertly Described', 'Extremely Satisfied', 'Great Communication', 'Greatly Appreciated', 'Beyond My Wildest Dreams', 'Supercalifragilisticexpialidocious', 'Thank You! Thank You! Thank You!']
+SUPPORT_FLATTER = ['You can do it', 'Nice Try', 'Don\'t give up', 'Every bit counts', 'Thank you', 'Keep going', 'You can do better than that']
+
+
+It has code for usernames. 
+
+## userprofile folder
+
+### models.py
+
+It has many functions to prepare a user profile
+
+
+## document folder
+
+### managers.py 
+
+References to PubTator and PubTator's API. 
+
+## task folder
+
+### models.py
+
+Contains different task names and difficulty levels: 
+
+levels = ["Basic", "Disease Marking", "Disease Advanced", "Disease Matching", "Intermediate", "Proficient", "Advanced", "Expert", "Expert", "Expert"]
+
+levels = ["Beginner", "Medium", "Expert", "Expert", "Expert"]
+
+
+Classes related to Entity Recognition tasks:
+
+class Task(models.Model):
+    """This is an ER Quest, tracks whose completed it and what documents are contained within
+        the Quest
+    """
+
+### task/ner folder
+
+Contains the code for getting a score via comparison of two players.
+
+
+
 # Log of installation of mark2cure
 
+Trying to install it as described [here](https://github.com/SuLab/mark2cure/blob/master/Setup.md)
 
 I will try and set up mark2cure running locally (I'm running Ubuntu 18.04).
+
+
+
+
+
+
+
 
 # Dependencies
 Okay, so first I'll run a series of commands at the root of the repository. I might have installed one or two of the required packages before (I had a run at this months ago, albeit without a log).
@@ -122,10 +189,27 @@ And error:
 
 ln: failed to create symbolic link '/usr/bin/node': File exists
 
+
+
+
 # Local setup
 
+I note that I had installed MySQL before, but I do not know my password.
+
+The setup mentions "if you get ENTREZ_EMAIL from Max, you need to put that here as well." I have no idea what or who is Max.
 
 
+I tried running `gulp` as suggested and got: 
+
+", you need to put that here as well"
+
+Error: Cannot find module 'gulp-load-plugins'
+
+Apparently gulp-util is deprecated, so I had failed to `npm install` it earlier. 
+
+N deprecated gulp-util@3.0.8: gulp-util is deprecated
+
+So this is a hard failure on resetting the system :(
 
 
 # Problems ignored for the moment 
